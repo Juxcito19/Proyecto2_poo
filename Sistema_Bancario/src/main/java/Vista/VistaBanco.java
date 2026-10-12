@@ -86,6 +86,7 @@ public class VistaBanco extends javax.swing.JFrame {
         btnConsignar.addActionListener(this::btnConsignarActionPerformed);
 
         btnRetirar.setText("Retirar");
+        btnRetirar.addActionListener(this::btnRetirarActionPerformed);
 
         btnConsultarSaldo.setText("Consultar saldo");
 
@@ -286,6 +287,26 @@ public class VistaBanco extends javax.swing.JFrame {
         txtResultado.setText("Ingresa un valor válido en la operación.");
     }
     }//GEN-LAST:event_btnConsignarActionPerformed
+
+    private void btnRetirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetirarActionPerformed
+     try {
+        String numero = txtNumero.getText().trim();
+        double valor = Double.parseDouble(txtValor.getText().trim());
+
+        if (controlador.buscarCuenta(numero) == null) {
+            txtResultado.setText("No existe una cuenta con ese número.");
+            return;
+        }
+
+        if (controlador.retirar(numero, valor)) {
+            txtResultado.setText("Retiro realizado.\n" + controlador.consultarSaldo(numero));
+        } else {
+            txtResultado.setText("No se pudo realizar el retiro. Revisa que el valor sea mayor que 0 y que no supere el saldo disponible (o el cupo de sobregiro en cuentas corrientes).");
+        }
+    } catch (NumberFormatException e) {
+        txtResultado.setText("Ingresa un valor válido en la operación.");
+    }
+    }//GEN-LAST:event_btnRetirarActionPerformed
 
     /**
      * @param args the command line arguments
