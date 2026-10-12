@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Vista;
 import Controlador.ControladorBanco;
@@ -66,6 +66,8 @@ public class VistaBanco extends javax.swing.JFrame {
         txtNumero.addActionListener(this::txtNumeroActionPerformed);
 
         txtTitular.addActionListener(this::txtTitularActionPerformed);
+
+        txtAnio.addActionListener(this::txtAnioActionPerformed);
 
         jLabel4.setText("\tTipo de cuenta");
 
@@ -343,6 +345,10 @@ public class VistaBanco extends javax.swing.JFrame {
         txtResultado.setText(datos);
     }
     }//GEN-LAST:event_btnConsultarDatosActionPerformed
+
+    private void txtAnioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAnioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAnioActionPerformed
 
     /**
      * @param args the command line arguments
