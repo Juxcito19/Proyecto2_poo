@@ -92,6 +92,7 @@ public class VistaBanco extends javax.swing.JFrame {
         btnConsultarSaldo.addActionListener(this::btnConsultarSaldoActionPerformed);
 
         btnConsultarDatos.setText("Consultar datos");
+        btnConsultarDatos.addActionListener(this::btnConsultarDatosActionPerformed);
 
         txtResultado.setColumns(20);
         txtResultado.setRows(5);
@@ -325,6 +326,23 @@ public class VistaBanco extends javax.swing.JFrame {
         txtResultado.setText(saldo);
     }
     }//GEN-LAST:event_btnConsultarSaldoActionPerformed
+
+    private void btnConsultarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarDatosActionPerformed
+    String numero = txtNumero.getText().trim();
+
+    if (numero.isEmpty()) {
+        txtResultado.setText("Ingresa el número de cuenta.");
+        return;
+    }
+
+    String datos = controlador.consultarDatos(numero);
+
+    if (datos == null) {
+        txtResultado.setText("No existe una cuenta con ese número.");
+    } else {
+        txtResultado.setText(datos);
+    }
+    }//GEN-LAST:event_btnConsultarDatosActionPerformed
 
     /**
      * @param args the command line arguments
