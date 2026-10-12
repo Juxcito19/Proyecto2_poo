@@ -83,6 +83,7 @@ public class VistaBanco extends javax.swing.JFrame {
         btnCrear.addActionListener(this::btnCrearActionPerformed);
 
         btnConsignar.setText("Consignar");
+        btnConsignar.addActionListener(this::btnConsignarActionPerformed);
 
         btnRetirar.setText("Retirar");
 
@@ -265,6 +266,26 @@ public class VistaBanco extends javax.swing.JFrame {
         txtResultado.setText("Revisa que la fecha, el saldo y el cupo sean números válidos.");
     }
     }//GEN-LAST:event_btnCrearActionPerformed
+
+    private void btnConsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsignarActionPerformed
+     try {
+        String numero = txtNumero.getText().trim();
+        double valor = Double.parseDouble(txtValor.getText().trim());
+
+        if (controlador.buscarCuenta(numero) == null) {
+            txtResultado.setText("No existe una cuenta con ese número.");
+            return;
+        }
+
+        if (controlador.consignar(numero, valor)) {
+            txtResultado.setText("Consignación realizada.\n" + controlador.consultarSaldo(numero));
+        } else {
+            txtResultado.setText("El valor a consignar debe ser mayor que 0.");
+        }
+    } catch (NumberFormatException e) {
+        txtResultado.setText("Ingresa un valor válido en la operación.");
+    }
+    }//GEN-LAST:event_btnConsignarActionPerformed
 
     /**
      * @param args the command line arguments
